@@ -1,7 +1,7 @@
 Custom build of dwm - dynamic window manager
 
 
-changes made: 
+<h3>changes made:</h3> 
 
 - added volume-control, brightness control, player control key support
 
@@ -15,11 +15,14 @@ changes made:
 
 - centered title
 
-Requirements:
+- Added emoji support by removing the iscol() function 
 
-scrot (for screenshot)
 
-xclip (clipboard manager)
+<h3>Requirements:</h3>
+
+- scrot (for screenshot)
+
+- xclip (clipboard manager)
 
 Screenshot:
 ![alt text](https://github.com/raunak234/custom-dwm/blob/master/screenshot.png?raw=true)
