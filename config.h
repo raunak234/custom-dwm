@@ -121,7 +121,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,  	                XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ShiftMask,             XK_t,      togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
@@ -139,9 +139,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY,			XK_m,	   spawn,       SHCMD("/home/kyoto/.local/src/scripts/music.sh") },
-	{ MODKEY|ShiftMask,		XK_s,	   spawn,	SHCMD("/home/kyoto/.local/src/scripts/screenshot.sh") },
-	{ MODKEY,			XK_s,	   spawn,	SHCMD("/home/kyoto/.local/src/scripts/web-search.sh") },
+	{ MODKEY|ShiftMask,		XK_s,	   spawn,	SHCMD("~/.local/src/scripts/screenshot.sh") },
+	{ MODKEY,			XK_s,	   spawn,	SHCMD("~/.local/src/scripts/web-search.sh") },
 };
 
 /* button definitions */
