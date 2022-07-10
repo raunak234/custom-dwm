@@ -1,4 +1,4 @@
-/* See LICENSE file for copyright and license details. */
+//* See LICENSE file for copyright and license details. */
 #include <time.h>
 #include <X11/XF86keysym.h>
 
@@ -19,12 +19,13 @@ static const char col_white[]       = "#dedede";
 static const char col_blue[]       = "#444b6a";
 static const char *colors[][3]      = {
 	        /*               fg         bg         border   */
-	        [SchemeNorm] = { col_white, col_black, col_gray },
-		[SchemeSel]  = { col_white, col_blue, col_blue },
+	        [SchemeNorm] = { col_white, col_black, col_white },
+		[SchemeSel]  = { col_white, col_blue, col_black },
+		[SchemeTitle]  = { col_white, col_black,  col_black  },
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6"};
+static const char *tags[] = { "1", "2", "3", "4", "5" };
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
@@ -124,6 +125,7 @@ static Key keys[] = {
 	{ MODKEY,  	                XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ShiftMask,             XK_t,      togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
