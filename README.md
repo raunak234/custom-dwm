@@ -36,7 +36,7 @@ Custom build of dwm - dynamic window manager
 
 - Picom-jonaburg (for the blur effect) /* optional if you dont want the blur */
 
-- <a href="https://github.com/raunak234/tools/slstatus">slstatus</a>
+- <u><a href="https://github.com/raunak234/tools/slstatus">slstatus</a></u> (for the status bar)
 
 Screenshot:
 ![alt text](https://github.com/raunak234/custom-dwm/blob/master/screenshot.png?raw=true)
