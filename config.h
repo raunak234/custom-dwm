@@ -91,7 +91,7 @@ static const char *playerstop[] = { "playerctl", "stop", NULL };
 static const char *camera[] = { "mpv", "-vf=hflip", "av://v4l2:/dev/video0", "--profile=low-latency", "--untimed", NULL };
 
 static Key keys[] = {
-	/* modifier                     key        function        argument */
+	/* Audio, Player and Brightness Control */
 	{ 0,            XF86XK_AudioRaiseVolume,   spawn,          {.v = upvol } },
 	{ 0,            XF86XK_AudioLowerVolume,   spawn,          {.v = downvol } },
 	{ 0,            XF86XK_AudioMute,          spawn,          {.v = mute } },
@@ -101,15 +101,22 @@ static Key keys[] = {
 	{ 0,            XF86XK_AudioNext,          spawn,          {.v = playernext } },
 	{ 0,            XF86XK_AudioPrev,          spawn,          {.v = playerprev } },
 	{ 0,            XF86XK_AudioStop,          spawn,          {.v = playerstop } },
+	/* Programs */
 	{ MODKEY,                       XK_space,  spawn,          {.v = roficmd } },
-	{ MODKEY,                       XK_p, 	   spawn,      	   {.v = dmenucmd} },
 	{ MODKEY,		        XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,		        XK_c,	  spawn,	  {.v = camera } },
+	{ MODKEY,		        XK_b,      spawn,          {.v = chromiumcmd } },
+	{ MODKEY,	    		XK_e,	   spawn,	   {.v = filecmd } }, 
+	
+	/* Scripts */
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,		XK_s,	   spawn,	SHCMD("~/.local/src/scripts/screenshot.sh") },
+	{ MODKEY,			XK_s,	   spawn,	SHCMD("~/.local/src/scripts/web-search.sh") },
+	
+	/* Window Manager Control */
 	{ MOD2KEY,                      XK_minus,  setgaps,        {.i = -1 } },
 	{ MOD2KEY,                      XK_equal,  setgaps,        {.i = +1 } },
 	{ MOD2KEY|ShiftMask,            XK_equal,  setgaps,        {.i = 0  } },
-	{ MODKEY,		        XK_b,      spawn,          {.v = chromiumcmd } },
-	{ MODKEY,	    		XK_e,	   spawn,	   {.v = filecmd } }, 
 	{ MODKEY,                       XK_g,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MOD2KEY,                      XK_Tab,    focusstack,     {.i = -1 } },
@@ -140,9 +147,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY|ShiftMask,		XK_s,	   spawn,	SHCMD("~/.local/src/scripts/screenshot.sh") },
-	{ MODKEY,			XK_s,	   spawn,	SHCMD("~/.local/src/scripts/web-search.sh") },
 };
 
 /* button definitions */
