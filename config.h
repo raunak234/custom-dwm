@@ -10,7 +10,7 @@ static const unsigned int gappx = 3;
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int vertpad            = 2;       /* vertical padding of bar */
+static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 3;       /* horizontal padding of bar */
 static const char *fonts[]         = { "Iosevka:size=11", "NotoColorEmoji:pixelsize=10:antialias=true:autohint=true" };
 static const char col_black[]       = "#1e222a";
@@ -19,8 +19,8 @@ static const char col_white[]       = "#dedede";
 static const char col_blue[]       = "#444b6a";
 static const char *colors[][3]      = {
 	        /*               fg         bg         border   */
-	        [SchemeNorm] = { col_white, col_black, col_white },
-		[SchemeSel]  = { col_white, col_blue, col_black },
+	        [SchemeNorm] = { col_white, col_black, col_black },
+		[SchemeSel]  = { col_white, col_blue, col_white },
 		[SchemeTitle]  = { col_white, col_black,  col_black  },
 };
 
@@ -66,12 +66,15 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0";
-static const char *dmenucmd[] = { "dmenu_run" , NULL};
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "NULL" }; 
 
+/* Programs */
+static const char *termcmd[]  = { "alacritty", NULL }; /* terminal */
 static const char *chromiumcmd[] = { "chromium", NULL }; /* browser */
 static const char *filecmd[] = { "alacritty", "-e", "ranger", NULL }; /* file manager */
-static const char *roficmd[] = { "rofi", "-show", "drun", NULL };
+static const char *roficmd[] = { "rofi", "-show", "drun", NULL }; /* application menu */
+static const char *camera[] = { "mpv", "-vf=hflip", "av://v4l2:/dev/video0", "--profile=low-latency", "--untimed", NULL }; /* camera */
+
 /* sound control*/
 static const char *upvol[] = { "amixer", "set" , "Master" , "5%+", NULL }; /*increase volume*/
 static const char *downvol[] = { "amixer", "set", "Master", "5%-", NULL }; /*decrease volume*/
@@ -87,8 +90,6 @@ static const char *playernext[] = { "playerctl", "next", NULL };
 static const char *playerprev[] = { "playerctl", "previous", NULL };
 static const char *playerstop[] = { "playerctl", "stop", NULL };
 
-/*camera */
-static const char *camera[] = { "mpv", "-vf=hflip", "av://v4l2:/dev/video0", "--profile=low-latency", "--untimed", NULL };
 
 static Key keys[] = {
 	/* Audio, Player and Brightness Control */
@@ -101,15 +102,15 @@ static Key keys[] = {
 	{ 0,            XF86XK_AudioNext,          spawn,          {.v = playernext } },
 	{ 0,            XF86XK_AudioPrev,          spawn,          {.v = playerprev } },
 	{ 0,            XF86XK_AudioStop,          spawn,          {.v = playerstop } },
+	
 	/* Programs */
-	{ MODKEY,                       XK_space,  spawn,          {.v = roficmd } },
-	{ MODKEY,		        XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,		        XK_c,	  spawn,	  {.v = camera } },
-	{ MODKEY,		        XK_b,      spawn,          {.v = chromiumcmd } },
-	{ MODKEY,	    		XK_e,	   spawn,	   {.v = filecmd } }, 
+	{ MODKEY,       			  XK_space,  spawn,   	     {.v = roficmd } },
+	{ MODKEY,		       			XK_Return, spawn,  	       {.v = termcmd } },
+	{ MODKEY,		        		XK_c,	  	 spawn,      	   {.v = camera } },
+	{ MODKEY,		        		XK_b,      spawn,          {.v = chromiumcmd } },
+	{ MODKEY,	  	  				XK_e,	  	 spawn,				   {.v = filecmd } }, 
 	
 	/* Scripts */
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|ShiftMask,		XK_s,	   spawn,	SHCMD("~/.local/src/scripts/screenshot.sh") },
 	{ MODKEY,			XK_s,	   spawn,	SHCMD("~/.local/src/scripts/web-search.sh") },
 	
@@ -126,10 +127,12 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_space,  zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,			XK_q,      killclient,     {0} },
+	{ MODKEY,												XK_q,      killclient,     {0} },
+	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,							XK_q,      quit,           {1} }, 
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,  	                XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,  	                		XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ShiftMask,             XK_t,      togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
